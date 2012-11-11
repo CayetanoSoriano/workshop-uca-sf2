@@ -21,19 +21,23 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Knp\Bundle\ConsoleAutocompleteBundle\KnpConsoleAutocompleteBundle(),
             new workshop\BlogBundle\workshopBlogBundle(),
-        );
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Craue\FormFlowBundle\CraueFormFlowBundle(),
+            );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
-            $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
-            $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-        }
+if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+    $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
+    $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
+    $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+}
 
-        return $bundles;
-    }
+return $bundles;
+}
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
-    {
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
-    }
+public function registerContainerConfiguration(LoaderInterface $loader)
+{
+    $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+}
 }
