@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use workshop\BlogBundle\Entity\Post;
+use Faker\Factory;
 
 class DefaultController extends Controller
 {
@@ -17,14 +18,18 @@ class DefaultController extends Controller
     {
 
     	$em = $this->getDoctrine()->getEntityManager();
+    	$faker = Factory::create('es_ES');
+
+
 
     	$post = new Post();
-    	$post->setTitle('hola')
-    	->setText('que tal')
+    	$post->setTitle($faker->text(15))
+    	->setText($faker->text(4000))
     	->setSlug($post->getTitle())
-    	->setDate(new \DateTime())
+    	//->setDate(new \DateTime())
     	;
 
+    	var_dump($post);
     	$em->persist($post);
     	$em->flush();
 
