@@ -227,4 +227,13 @@ class Post
     {
         return $this->comments;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    
+    public function foo() {
+        $this->date = new \DateTime();
+        $this->setSlug($this->getTitle());
+    }
 }
