@@ -26,7 +26,8 @@
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "fzaninotto/faker": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "raulfraile/ladybug-bundle": "dev-master"
+        "raulfraile/ladybug-bundle": "dev-master",
+        "doctrine/doctrine-migrations-bundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

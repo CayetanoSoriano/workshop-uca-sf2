@@ -34,6 +34,14 @@ class Comment
      */
     private $post;
 
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date")
+     */
+    private $date;
+
     /**
      * Get id
      *
@@ -88,5 +96,28 @@ class Comment
     public function getPost()
     {
         return $this->post;
+    }
+
+        /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Post
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
     }
 }

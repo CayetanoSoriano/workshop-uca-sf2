@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="workshop\BlogBundle\Entity\CategoryRepository")
+ * @ORM\HasLifecycleCallbacks 
  */
 class Category
 {
@@ -28,6 +29,13 @@ class Category
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="Post",mappedBy="category")
@@ -110,4 +118,37 @@ class Category
     {
         return $this->posts;
     }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function BeforeSaveData()
+    {
+       $this->setSlug(strtolower(str_replace(' ','-',trim($this->getName(),'.'))));
+
+    }
+
 }

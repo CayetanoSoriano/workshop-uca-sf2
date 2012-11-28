@@ -1,6 +1,12 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-{% block content %}{% endblock %}    
+<div class="row-fluid">
+    <div class="span8">
+    	{% block content %}{% endblock %}    
+    </div>
+    {% render "workshopBlogBundle:Default:sidebar" %}
+</div>
+{% block comments %}{% endblock %}
 {% endblock %}
 

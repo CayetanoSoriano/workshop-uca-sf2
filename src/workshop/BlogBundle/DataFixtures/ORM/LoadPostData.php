@@ -25,7 +25,7 @@ class LoadPostData extends AbstractFixture implements OrderedFixtureInterface
 		$post = new Post();
 		$post->setCategory($this->getReference('categoria'))
 			 ->setTitle($faker->text(15))
-			 ->setText($faker->text(15))
+			 ->setText($faker->text(1000))
 		;
 
 		$manager->persist($post);

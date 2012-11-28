@@ -1,25 +1,10 @@
 {% extends 'workshopBlogBundle::BlogBundle.html.twig' %}
 {% block content %}
-
-<div class="row-fluid">
-    <div class="span8">
         {% for post in posts %}
-
         <div class="well">
-            <h2>{{post.title|title}}</h2>
+            <h2><a href="{{path('_BlogView',{'slug':post.slug})}}">{{post.title|title}}</a></h2>
             <p>{{post.text|truncate(255,true)}}</p>
             <p>{{post.date|date("m/d/Y")}}</p>
         </div>
-
         {% endfor %}
-    </div>
-    <div class="span4">
-        <div class="well">
-            {% for category in categories %}
-                {{category.name}}
-            {% endfor %}
-        </div>
-    </div>
-</div>
-
 {% endblock %}

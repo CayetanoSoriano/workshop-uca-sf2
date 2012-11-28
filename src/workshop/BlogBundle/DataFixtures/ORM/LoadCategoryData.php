@@ -20,7 +20,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 
 		$category = new Category();
 
-		$category->setName($faker->text(15));    	
+		$category->setName($faker->text(15));
 		$manager->persist($category);
 
 		$manager->flush();

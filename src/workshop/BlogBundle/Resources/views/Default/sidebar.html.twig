@@ -1,0 +1,7 @@
+    <div class="span4">
+        <div class="well">
+            {% for category in categories %}
+                <a href="{{path('_BlogCategory', {'slug': category.slug})}}">{{category.name}}</a>
+            {% endfor %}
+        </div>
+    </div>

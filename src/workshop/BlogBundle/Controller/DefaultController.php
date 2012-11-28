@@ -5,6 +5,7 @@ namespace workshop\BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use workshop\BlogBundle\Entity\Post;
 use workshop\BlogBundle\Entity\Category;
 use Faker\Factory;
@@ -19,29 +20,48 @@ class DefaultController extends Controller
     {
 
     	$em = $this->getDoctrine()->getEntityManager();
-    	$faker = Factory::create();
-
-
-
-    	$post = new Post();
-    	$post->setTitle($faker->text(15))
-    	     ->setText($faker->text(4000))
-    	;
-
-
-        $category = new Category();
-        $category->setName($faker->text(10));
-        $post->setCategory($category);
-        $category->addPost($post); 
-        $em->persist($category);
-    	$em->persist($post);
-
-
-
-    	$em->flush();
-
     	$posts = $em->getRepository('workshopBlogBundle:Post')->findAll();
+    	return compact('posts');
+    }
+
+
+    /**
+     * @Route("/category/{slug}", name="_BlogCategory")
+     * @Template("workshopBlogBundle:Default:index.html.twig")
+     */
+    public function categoryAction($slug)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $category = $em->getRepository('workshopBlogBundle:Category')->findOneBySlug($slug);
+        $posts = $category->getPosts();
+
+        return compact('posts');
+    }
+
+
+
+    /**
+     * @Route("/{slug}", name="_BlogView")
+     * @Template()
+     */
+    public function viewAction($slug)
+    {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $post = $em->getRepository('workshopBlogBundle:Post')->findOneBySlug($slug);
+        if(!$post) {
+            throw new NotFoundHttpException('The specified entity does not exist.');
+        }
+
+        return array('post' => $post,'comments' => $post->getComments());
+    }
+
+    public function sidebarAction()
+    {
+        $em = $this->getDoctrine()->getEntityManager();
         $categories = $em->getRepository('workshopBlogBundle:Category')->findAll();
-    	return array('posts' => $posts,'categories' => $categories);
+        return $this->render('workshopBlogBundle:Default:sidebar.html.twig',
+            array('categories' => $categories)
+        );
     }
 }

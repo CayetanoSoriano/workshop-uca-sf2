@@ -231,9 +231,8 @@ class Post
     /**
      * @ORM\PrePersist
      */
-    
-    public function foo() {
+    public function BeforeSaveData() {
         $this->date = new \DateTime();
-        $this->setSlug($this->getTitle());
+        $this->setSlug(strtolower(str_replace(' ','-',trim($this->getTitle(),'.'))));
     }
 }
