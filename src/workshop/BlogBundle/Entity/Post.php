@@ -59,7 +59,7 @@ class Post
 
     /**
      * 
-     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"persist", "remove"})
      */
     private $comments;
 
@@ -228,11 +228,16 @@ class Post
         return $this->comments;
     }
 
+    public function __toString()
+    {   
+        return $this->getTitle();
+    }
+
     /**
      * @ORM\PrePersist
      */
     public function BeforeSaveData() {
         $this->date = new \DateTime();
         $this->setSlug(strtolower(str_replace(' ','-',trim($this->getTitle(),'.'))));
-    }
+   }
 }

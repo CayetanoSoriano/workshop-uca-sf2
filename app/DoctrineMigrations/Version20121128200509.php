@@ -16,6 +16,7 @@ class Version20121128200509 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() != "mysql");
         
         $this->addSql("ALTER TABLE Comment ADD date DATE NOT NULL");
+        $this->addSql("ALTER TABLE Comment ADD date DATE NOT NULL");
     }
 
     public function down(Schema $schema)

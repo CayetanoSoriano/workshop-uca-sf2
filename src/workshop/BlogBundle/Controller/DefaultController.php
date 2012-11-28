@@ -25,6 +25,16 @@ class DefaultController extends Controller
     }
 
 
+
+    /**
+     * @Route("/admin/")
+     * @Template()
+     */
+    public function adminAction()
+    {
+        return array();
+    }
+
     /**
      * @Route("/category/{slug}", name="_BlogCategory")
      * @Template("workshopBlogBundle:Default:index.html.twig")
@@ -64,4 +74,5 @@ class DefaultController extends Controller
             array('categories' => $categories)
         );
     }
+
 }

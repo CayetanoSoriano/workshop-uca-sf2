@@ -31,5 +31,5 @@ security:
                 realm: "Secured Demo Area"
 
     access_control:
-        - { path: ^/hello/, roles: 'ROLE_ADMIN' }
+        - { path: ^/admin/, roles: 'ROLE_ADMIN' }
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }
