@@ -20,7 +20,7 @@ class DefaultController extends Controller
     {
 
     	$em = $this->getDoctrine()->getEntityManager();
-    	$posts = $em->getRepository('workshopBlogBundle:Post')->findAll();
+    	$posts = $em->getRepository('workshopBlogBundle:Post')->findAllOrderByData();
     	return compact('posts');
     }
 

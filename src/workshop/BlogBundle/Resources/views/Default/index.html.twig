@@ -4,7 +4,7 @@
         <div class="well">
             <h2><a href="{{path('_BlogView',{'slug':post.slug})}}">{{post.title|title}}</a></h2>
             <p>{{post.text|truncate(255,true)}}</p>
-            <p>{{post.date|date("m/d/Y")}}</p>
+            <p>{{post.date|date("d/m/Y")}}</p>
         </div>
         {% endfor %}
 {% endblock %}

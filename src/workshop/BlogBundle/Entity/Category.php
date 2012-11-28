@@ -39,6 +39,8 @@ class Category
 
     /**
      * @ORM\OneToMany(targetEntity="Post",mappedBy="category")
+     * @ORM\OrderBy({"date" = "DESC"})
+     * 
      */
     private $posts;
 
