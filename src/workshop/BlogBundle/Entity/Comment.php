@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="workshop\BlogBundle\Entity\CommentRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Comment
 {
@@ -38,7 +39,7 @@ class Comment
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
@@ -120,4 +121,11 @@ class Comment
     {
         return $this->date;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function BeforeSaveData() {
+        $this->date = new \DateTime();
+   }
 }

@@ -1,3 +1,8 @@
+workshop_admin_blog:
+    resource: "@workshopAdminBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
 workshop_blog:
     resource: "@workshopBlogBundle/Controller/"
     type:     annotation

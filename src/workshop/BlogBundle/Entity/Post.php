@@ -40,7 +40,7 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date")
+     * @ORM\Column(name="date", type="datetime")
      */
     private $date;
 
@@ -60,6 +60,7 @@ class Post
     /**
      * 
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="post", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"date" = "DESC"})
      */
     private $comments;
 

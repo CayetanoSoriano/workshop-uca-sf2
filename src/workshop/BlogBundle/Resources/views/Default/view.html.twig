@@ -23,6 +23,14 @@
         </div>
     </div>
 </div>
-
 {% endfor %}
+
+<div class="row-fluid">
+    <div class="span8">
+        <form action="{{ path('_BlogCommentSave') }}" method="post" {{ form_enctype(form) }}>
+            {{form_widget(form)}}
+            <input type="submit">
+        </form>
+    </div>
+</div>
 {% endblock %}

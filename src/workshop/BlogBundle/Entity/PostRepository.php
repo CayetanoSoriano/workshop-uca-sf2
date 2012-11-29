@@ -12,12 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
-	public function findAllOrderByData()
+
+	public function queryAllOrderByDate()
 	{
 		$em = $this->getEntityManager();
 		$dql = 'SELECT p From workshopBlogBundle:Post p ORDER BY p.date DESC';
-        $consulta = $em->createQuery($dql);
+        return $em->createQuery($dql);
+	}
 
-        return $consulta->getResult();
+	public function findAllOrderByDate()
+	{
+        return $this->queryAllOrderByDate()->getResult();
 	}
 }
